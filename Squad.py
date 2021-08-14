@@ -50,8 +50,12 @@ class Squad:
         else:
             print(Fore.YELLOW + "Hero: {} is already not in squad: {}.\n".format(name, self.__name))
 
-    def is_hero_exists(self, name: str):
-        for hero in self.__heroes:
-            if hero == name:
-                return True
+    def is_hero_exists(self, hero_name: str):
+        """
+        Check if hero is in squad.
+        :param hero_name: Hero's name
+        :return:
+        """
+        if next((i for i, hero in enumerate(self.__heroes) if hero == hero_name), -1) >= 0:
+            return True
         return False

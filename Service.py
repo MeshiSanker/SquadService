@@ -63,10 +63,7 @@ class Service:
         :param hero_name: Hero's name
         :return: True/False
         """
-        for hero in self.__squads[self.get_squad_index(squad_name)].heroes:
-            if hero == hero_name:
-                return True
-        return False
+        return self.__squads[self.get_squad_index(squad_name)].is_hero_exists(hero_name)
 
     def is_squad_resting(self, squad_name: str) -> bool:
         """
