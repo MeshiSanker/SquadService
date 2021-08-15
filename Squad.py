@@ -1,12 +1,9 @@
-from colorama import Fore
-
-
 class Squad:
     def __init__(self, name: str, is_resting: bool):
         self.__heroes = []
         self.__name = name
         self.__is_resting = is_resting
-        print(Fore.GREEN + "Squad: {} was created successfully.\n".format(self.__name))
+        print("Squad: {} was created successfully.\n".format(self.__name))
 
     @property
     def name(self) -> str:
@@ -33,10 +30,10 @@ class Squad:
         """
         if not self.is_hero_exists(name):
             self.__heroes.append(name)
-            print(Fore.GREEN + "Hero: {}, was added to the squad:{}\n".format(name, self.__name))
+            print("Hero: {}, was added to the squad:{}\n".format(name, self.__name))
 
         else:
-            print(Fore.YELLOW + "Hero: {}, is already in the squad: {}.\n".format(name, self.__name))
+            print("Hero: {}, is already in the squad: {}.\n".format(name, self.__name))
 
     def remove_hero(self, name: str):
         """
@@ -46,9 +43,9 @@ class Squad:
         """
         if self.is_hero_exists(name):
             self.__heroes.remove(name)
-            print(Fore.GREEN + "Hero: {}, removed from the squad:{}\n".format(name, self.__name))
+            print("Hero: {}, removed from the squad:{}\n".format(name, self.__name))
         else:
-            print(Fore.YELLOW + "Hero: {} is already not in squad: {}.\n".format(name, self.__name))
+            print("Hero: {} is already not in squad: {}.\n".format(name, self.__name))
 
     def is_hero_exists(self, hero_name: str):
         """

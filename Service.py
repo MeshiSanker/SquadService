@@ -1,6 +1,5 @@
 from Hero import Hero
 from Squad import Squad
-from colorama import Fore
 
 
 class Service:
@@ -19,7 +18,7 @@ class Service:
         :return:
         """
         if self.is_hero_exists(name):
-            print(Fore.YELLOW + "Hero already exists.\n")
+            print("Hero already exists.\n")
         else:
             self.__heroes.append(Hero(name, hp, is_good, power))
 
@@ -32,7 +31,7 @@ class Service:
         :return:
         """
         if self.is_squad_exists(name):
-            print(Fore.YELLOW + "Squad already exists.\n")
+            print("Squad already exists.\n")
         else:
             self.__squads.append(Squad(name, is_resting))
 
@@ -81,7 +80,7 @@ class Service:
         """
         for hero in self.__squads[self.get_squad_index(squad_name)].heroes:
             if self.__heroes[self.get_hero_index(hero)].hp == 0:
-                print(Fore.RED + "Hero: {} is Dead, you can revive them.\n".format(hero))
+                print("Hero: {} is Dead, you can revive them.\n".format(hero))
                 return True
         return False
 
@@ -120,7 +119,7 @@ class Service:
         if self.is_hero_exists(hero_name) and self.is_squad_exists(squad_name):
             self.__squads[self.get_squad_index(squad_name)].add_hero(hero_name)
         else:
-            print(Fore.RED + "Squad or hero doesn't exist.")
+            print("Squad or hero doesn't exist.")
 
     def remove_hero_from_squad(self, squad_name: str, hero_name):
         """
@@ -149,7 +148,7 @@ class Service:
         :return:
         """
         self.__heroes[self.get_hero_index(hero_name)].hp = hp
-        print(Fore.GREEN + "Hero: {} HP was set to: {}.\n".format(hero_name, hp))
+        print("Hero: {} HP was set to: {}.\n".format(hero_name, hp))
 
     def check_if_common_hero(self, squad_a_name: str, squad_b_name: str) -> bool:
         """
@@ -181,19 +180,19 @@ class Service:
         :return: True/False
         """
         if not self.is_squad_exists(squad_a_name) or not self.is_squad_exists(squad_b_name):
-            print(Fore.RED + "One of the squads you entered doesn't exist, please try again.\n")
+            print("One of the squads you entered doesn't exist, please try again.\n")
             return False
 
         if not self.is_squad_resting(squad_a_name) or not self.is_squad_resting(squad_b_name):
-            print(Fore.RED + "One or more of the squads are in mid battle, please try again later.\n")
+            print("One or more of the squads are in mid battle, please try again later.\n")
             return False
 
         if self.check_if_common_hero(squad_a_name, squad_b_name):
-            print(Fore.RED + "There's a common hero to the two squads, please try squads that don't share a hero.\n")
+            print("There's a common hero to the two squads, please try squads that don't share a hero.\n")
             return False
 
         if self.is_dead_hero_in_squad(squad_a_name) or self.is_dead_hero_in_squad(squad_b_name):
-            print(Fore.RED + "There's a dead hero in one of the squads, try to revive them or pick another squad.\n")
+            print("There's a dead hero in one of the squads, try to revive them or pick another squad.\n")
             return False
 
         return True
@@ -208,10 +207,10 @@ class Service:
         :return:
         """
         if self.check_if_valid_battle(squad_a_name, squad_b_name):
-            print(Fore.GREEN + "Battle is valid, lets Start!\n")
+            print("Battle is valid, lets Start!\n")
 
         else:
-            print(Fore.RED + "Battle can't start due the above issue")
+            print("Battle can't start due the above issue")
             return
 
         self.set_squad_resting(squad_a_name, False)
@@ -221,20 +220,13 @@ class Service:
         squad_b_power = self.get_squad_power(squad_b_name)
 
         if squad_a_power > squad_b_power:
-            print(Fore.MAGENTA + "Squad: {} is the winner!\n".format(squad_a_name))
+            print("Squad: {} is the winner!\n".format(squad_a_name))
             self.kill_squad(squad_b_name)
         elif squad_a_power == squad_b_power:
-            print(Fore.MAGENTA + "There's a tie! no winner or loser!\n")
+            print("There's a tie! no winner or loser!\n")
         else:
-            print(Fore.MAGENTA + "Squad: {} is the winner!\n".format(squad_b_name))
+            print("Squad: {} is the winner!\n".format(squad_b_name))
             self.kill_squad(squad_a_name)
 
         self.set_squad_resting(squad_a_name, True)
         self.set_squad_resting(squad_b_name, True)
-
-
-
-
-
-
-

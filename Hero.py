@@ -1,6 +1,3 @@
-from colorama import Fore
-
-
 class Hero:
 
     def __init__(self, name: str, hp: int, is_good: bool, power: int):
@@ -8,7 +5,7 @@ class Hero:
         self.__hp = hp
         self.__is_good = is_good
         self.__power = power
-        print(Fore.GREEN + "Hero: {} was created successfully.\n".format(self.__name))
+        print("Hero: {} was created successfully.\n".format(self.__name))
 
     @property
     def name(self) -> str:
